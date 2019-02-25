@@ -14,16 +14,14 @@ namespace pipe_graph {
         int edge_id_;
         pipe_type end_points_;
     public:
-        Edge(const int id, std::shared_ptr<Node> n_1, std::shared_ptr<Node> n_2):
+        Edge(int id, std::shared_ptr<Node> n_1, std::shared_ptr<Node> n_2):
         edge_id_(id), end_points_(n_1,n_2) {}
 
         //get/set functions
         double edge_id() const ;
-
-        pipe_type end_points() const;
-
         void edge_id(int id);
 
+        pipe_type end_points() const;
         void end_points(std::shared_ptr<Node> n_1, std::shared_ptr<Node> n_2);
 
 

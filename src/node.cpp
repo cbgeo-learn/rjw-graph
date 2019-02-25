@@ -12,7 +12,7 @@ Eigen::Array2d pipe_graph::Node::coordinate() const {
     return node_coord_;
 }
 
-void pipe_graph::Node::node_id(const int id) {
+void pipe_graph::Node::node_id(int id) {
     node_id_ = id;
 
 }

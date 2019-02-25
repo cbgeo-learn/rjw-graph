@@ -11,7 +11,7 @@ namespace pipe_graph{
         return end_points_;
     }
 
-    void Edge::edge_id(const int id) {
+    void Edge::edge_id(int id) {
         edge_id_ = id;
 
     }

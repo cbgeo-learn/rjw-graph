@@ -14,14 +14,16 @@ namespace pipe_graph{
         Eigen::Array2d node_coord_;
     public:
         // constructor
-        Node(const int node_id, const double coord_x, const double coord_y):
+        Node(int node_id, double coord_x, double coord_y):
                 node_id_(node_id), node_coord_(coord_x,coord_y){};
-        // get functions
+        // get/set functions
         int node_id() const;
-        Eigen::Array2d coordinate() const;
-        // set functions
         void node_id(int id);
+
+        Eigen::Array2d coordinate() const;
         void coordinate(double coord_x,double coord_y);
+
+
     };
 }
 
