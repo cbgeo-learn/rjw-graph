@@ -3,4 +3,7 @@ project(pipeline_graph)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(pipeline_graph  ./test/node_edge_test.cpp)
+include_directories(../eigen)
+
+
+add_executable(pipeline_graph ./src/node.cpp ./src/edge.cpp ./test/node_edge_test.cpp)
