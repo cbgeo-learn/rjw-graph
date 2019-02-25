@@ -14,8 +14,8 @@ TEST_CASE("Checking Node/Edge", "Node/Edge") {
         int id1(111),id2(222);
         float coord_x_1(123.123),coord_y_1(234.234),coord_x_2(56.456),coord_y_2(789.789);
 
-        Node n_1(id1,coord_x_1,coord_y_1);
-        Node n_2(id2,coord_x_2,coord_y_2);
+        PIPE_GRAPH::Node n_1(id1,coord_x_1,coord_y_1);
+        PIPE_GRAPH::Node n_2(id2,coord_x_2,coord_y_2);
 
         REQUIRE(n_1.get_node_id() == id1);
         REQUIRE(n_1.get_coordinate().first == coord_x_1);
@@ -29,7 +29,7 @@ TEST_CASE("Checking Node/Edge", "Node/Edge") {
 
         // Check Edge
         int e_id(3321);
-        Edge e1(e_id,n_1,n_2);
+        PIPE_GRAPH::Edge e1(e_id,n_1,n_2);
         REQUIRE(e1.get_edge_id() == e_id);
         REQUIRE(e1.get_end_points().second->get_node_id() == id2);
         e1.set_edge_id(123213);
