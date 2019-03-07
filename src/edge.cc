@@ -1,6 +1,3 @@
-//
-// Created by Renjie Wu on 2019-02-24.
-//
 #include "edge.h"
 
 std::pair<int, int> pipe_graph::Edge::end_points_id() const {

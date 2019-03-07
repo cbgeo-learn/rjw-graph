@@ -1,7 +1,3 @@
-//
-// Created by Renjie Wu on 2019-02-24.
-//
-
 #ifndef PIPELINE_GRAPH_EDGE_H
 #define PIPELINE_GRAPH_EDGE_H
 
