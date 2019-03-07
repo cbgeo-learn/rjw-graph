@@ -2,9 +2,9 @@
 // Created by Renjie Wu on 2019-02-24.
 //
 #define CATCH_CONFIG_MAIN
-#include "../external/catch.h"
-#include "../include/edge.h"
-#include "../include/node.h"
+#include "catch.h"
+#include "edge.h"
+#include "node.h"
 // Check mesh class
 TEST_CASE("Checking Node/Edge", "Node/Edge") {
     // Tolerance
@@ -21,24 +21,13 @@ TEST_CASE("Checking Node/Edge", "Node/Edge") {
         REQUIRE(n_1.coordinate()(0) == coord_x_1);
         REQUIRE(n_1.coordinate()(1) == coord_y_1);
 
-        n_1.node_id(1231231231);
-        n_1.coordinate(213123.213213,2141234.231);
-        REQUIRE(n_1.node_id() == 1231231231);
-        REQUIRE(n_1.coordinate()(0) == 213123.213213);
-        REQUIRE(n_1.coordinate()(1) == 2141234.231);
-
         // Check Edge
         int e_id(3321);
 
         pipe_graph::Edge e1(e_id,std::make_shared<pipe_graph::Node> (n_1),
                 std::make_shared<pipe_graph::Node> (n_2));
         REQUIRE(e1.edge_id() == e_id);
-        REQUIRE(e1.end_points().second->node_id() == id2);
-        e1.edge_id(123213);
-        REQUIRE(e1.edge_id() == 123213);
-        e1.end_points(std::make_shared<pipe_graph::Node> (n_2),
-                      std::make_shared<pipe_graph::Node> (n_1));
-        REQUIRE(e1.end_points().first->node_id() == id2);
+        REQUIRE(e1.end_points_id().first== id1);
 
 
 
