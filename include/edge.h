@@ -6,10 +6,10 @@
 #include <utility>
 
 namespace pipe_graph {
+//! Edge class
+//! \brief  class that stores the information about edge
+//! \details edge class that store edge id and connecting nodes
 class Edge {
-  //! Edge class
-  //! \brief  class that stores the information about edge
-  //! \details edge class that store edge id and connecting nodes
  public:
   //! constructor
   //! \param[in] id Global/local index for the edge
@@ -22,9 +22,10 @@ class Edge {
   //! get functions
   int edge_id() const;
   std::pair<int, int> end_points_id() const;
+  std::tuple<Eigen::Array2d, Eigen::Array2d> end_points_coord() const;
 
  private:
-  typedef std::pair<std::shared_ptr<Node>, std::shared_ptr<Node>> pipe_type;
+  using pipe_type = std::pair<std::shared_ptr<Node>, std::shared_ptr<Node>>;
   //! edge id
   int edge_id_;
   //! a pair of pointers point to connected nodes of the edge

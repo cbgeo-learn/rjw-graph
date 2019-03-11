@@ -19,4 +19,6 @@ include_directories(./include
 add_executable(pipeline_graph
         ./src/edge.cc
         ./src/node.cc
-        ./test/node_edge_test.cc)
+        ./src/mesh.cc
+#        ./test/node_edge_test.cc
+        ./test/mesh_test.cc)
