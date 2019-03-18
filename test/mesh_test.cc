@@ -22,15 +22,19 @@ TEST_CASE("Checking Mesh", "Mesh") {
 
     std::vector<std::pair<int, int>> nodes_pair{
         std::make_pair<int, int>(0, 1), std::make_pair<int, int>(0, 2),
-        std::make_pair<int, int>(0, 3), std::make_pair<int, int>(0, 4)};
+        std::make_pair<int, int>(0, 3), std::make_pair<int, int>(0, 4),
+        std::make_pair<int, int>(1, 2), std::make_pair<int, int>(3, 4)};
     REQUIRE(m.set_edges(nodes_pair));
-    REQUIRE(m.num_edges() == 4);
+    REQUIRE(m.num_edges() == 6);
+    pipe_graph::draw_graph(m);
 
     std::vector<std::pair<int, int>> nodes_pair_false{
         std::make_pair<int, int>(0, 1), std::make_pair<int, int>(0, 2),
         std::make_pair<int, int>(0, 3), std::make_pair<int, int>(0, 121)};
 
-    REQUIRE(m.set_edges(nodes_pair_false));
+    REQUIRE(!m.set_edges(nodes_pair_false));
     REQUIRE(m.num_edges() == 3);
+
+    pipe_graph::draw_graph(m, "broken_g.dot");
   }
 }

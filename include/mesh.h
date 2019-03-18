@@ -1,23 +1,21 @@
-//
-// Created by Renjie Wu on 2019-03-07.
-//
-
 #ifndef PIPELINE_GRAPH_MESH_H
 #define PIPELINE_GRAPH_MESH_H
 
-#include "edge.h"
-#include "node.h"
 #include <iostream>
 #include <map>
 #include <memory>
 #include <utility>
 #include <vector>
 
+#include "edge.h"
+#include "node.h"
+
 namespace pipe_graph {
 //! Mesh class
 //! \brief  class that stores the information about a grid
 //! \details  class that store edges and nodes
 class Mesh {
+  friend void draw_graph(const Mesh&, std::string);
 
  public:
   //! constructor
@@ -25,9 +23,10 @@ class Mesh {
   explicit Mesh(int id) : mesh_id_{id} {};
 
   int mesh_id() { return mesh_id_; }
-  //! get function for number of nodes/edges
-  auto num_nodes() { return nodes_.size(); };
-  auto num_edges() { return edges_.size(); };
+  //! return number of nodes
+  auto num_nodes() const { return nodes_.size(); };
+  //! return number of edges
+  auto num_edges() const { return edges_.size(); };
 
   //! set nodes for the mesh
   //! \param[in] coordinates Vector of pair of double that specify nodes
@@ -47,6 +46,11 @@ class Mesh {
   //! map for edges
   std::map<int, Edge> edges_;
 };
+//! function that produce .dot graph of the mesh for visualization purpose
+//! \param[in] m the mesh object
+//! \param[in] file_name name for the output file
+void draw_graph(const Mesh& m, std::string file_name = "graph.dot");
+
 }  // namespace pipe_graph
 
 #endif  // PIPELINE_GRAPH_MESH_H

@@ -19,10 +19,11 @@ class Edge {
        const std::shared_ptr<Node>& n_2)
       : edge_id_{id}, end_points_{n_1, n_2} {}
 
-  //! get functions
   int edge_id() const;
+  //! return ids of two endpoints of the edge
   std::pair<int, int> end_points_id() const;
-  std::tuple<Eigen::Array2d, Eigen::Array2d> end_points_coord() const;
+  //! return coordinate of two endpoints of the edge
+  std::pair<Eigen::Array2d, Eigen::Array2d> end_points_coord() const;
 
  private:
   using pipe_type = std::pair<std::shared_ptr<Node>, std::shared_ptr<Node>>;

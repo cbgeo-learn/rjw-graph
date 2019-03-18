@@ -9,16 +9,22 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 find_package(Eigen3 REQUIRED)
 include_directories(${EIGEN3_INCLUDE_DIR})
 
+# Boost Archive
+find_package(Boost REQUIRED COMPONENTS system serialization)
+include_directories(${BOOST_INCLUDE_DIRS})
+link_libraries(${Boost_SERIALIZATION_LIBRARY} ${Boost_SYSTEM_LIBRARY})
+
+
 # Include directories
-include_directories(./include
-        ./src
-        ./test
-        ./cmake
-        ./external)
+include_directories(${pipeline_graph_SOURCE_DIR}/include
+        ${pipeline_graph_SOURCE_DIR}/src
+        ${pipeline_graph_SOURCE_DIR}/test
+        ${pipeline_graph_SOURCE_DIR}/cmake
+        ${pipeline_graph_SOURCE_DIR}/external)
 
 add_executable(pipeline_graph
-        ./src/edge.cc
-        ./src/node.cc
-        ./src/mesh.cc
+        ${pipeline_graph_SOURCE_DIR}/src/edge.cc
+        ${pipeline_graph_SOURCE_DIR}/src/node.cc
+        ${pipeline_graph_SOURCE_DIR}/src/mesh.cc
 #        ./test/node_edge_test.cc
-        ./test/mesh_test.cc)
+        ${pipeline_graph_SOURCE_DIR}/test/mesh_test.cc)

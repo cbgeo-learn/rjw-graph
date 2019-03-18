@@ -1,7 +1,12 @@
 
+#include <boost/graph/adjacency_list.hpp>
+#include <boost/graph/graphviz.hpp>
+#include <iostream>
+#include <cmath>
 #include "mesh.h"
 #include "edge.h"
 #include "node.h"
+
 
 bool pipe_graph::Mesh::set_nodes(
     const std::vector<std::pair<double, double>> &coordinates) {
@@ -52,3 +57,38 @@ bool pipe_graph::Mesh::set_edges(
 //    std::vector<int> id_list;
 //    for
 //}
+void pipe_graph::draw_graph(const pipe_graph::Mesh &m, std::string file_name) {
+  struct VertexProps {
+    std::string name;
+  };
+  struct EdgeProps {
+    int weight;
+  };
+  typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS,
+                                VertexProps, EdgeProps>
+      Graph;
+
+  //! start construct graph vertices from nodes info
+  int n_node = m.num_nodes();
+  int n_edge = m.num_edges();
+  Graph g(n_node);
+  //! initialize the graph vertices
+  for (int i = 0; i < n_node; i++) {
+    auto n_id = (m.nodes_).at(i)->node_id();
+    g[n_id].name = "N" + std::to_string(n_id);
+  }
+  //! adding edges to the graph
+  for (int i = 0; i < n_edge; i++) {
+    auto node_ids = (m.edges_).at(i).end_points_id();
+    auto nod_coords = (m.edges_).at(i).end_points_coord();
+    int appro_dist =
+        sqrt((nod_coords.first - nod_coords.second).square().sum());
+    add_edge(node_ids.first, node_ids.second, {appro_dist}, g);
+  }
+
+  //! write the result to a file
+  std::ofstream f(file_name);
+  write_graphviz(f, g, make_label_writer(get(&VertexProps::name, g)),
+                 make_label_writer(get(&EdgeProps::weight, g)));
+  f.close();
+}
